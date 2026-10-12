@@ -1,5 +1,6 @@
 package chess.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -16,6 +17,8 @@ import java.util.List;
 
 @Configuration
 public class SecurityConfig{
+    @Value("${FRONTEND_URL:http://localhost:3000}")
+    private String frontendUrl;
 
     @Bean
     public InMemoryUserDetailsManager users(){
@@ -47,7 +50,7 @@ public class SecurityConfig{
     @Bean
     public CorsConfigurationSource cors(){
         CorsConfiguration c=new CorsConfiguration();
-        c.setAllowedOrigins(List.of("http://localhost:3000"));
+        c.setAllowedOrigins(List.of(frontendUrl));
         c.setAllowedMethods(List.of("GET","POST","OPTIONS"));
         c.setAllowedHeaders(List.of("*"));
         c.setAllowCredentials(true);
