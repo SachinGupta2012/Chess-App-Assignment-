@@ -1,18 +1,19 @@
 package chess.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.springframework.stereotype.Service;
+
+import chess.enums.Color;
 import chess.model.Board;
 import chess.model.ChessGame;
 import chess.model.Move;
 import chess.model.Piece;
 import chess.model.Player;
 import chess.model.Position;
-import chess.enums.Color;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class GameService{
