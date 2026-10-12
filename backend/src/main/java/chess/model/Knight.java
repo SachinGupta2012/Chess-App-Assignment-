@@ -1,0 +1,42 @@
+package chess.model;
+import chess.enums.Color;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Knight extends Piece{
+    public Knight(Color color){
+        super(color);
+    }
+    public boolean isValidMove(Board board,Position from,Position to){
+        if(from.getRow()==to.getRow() && from.getColumn()==to.getColumn()){
+            return false;
+        }
+        Piece dest=board.getSquare(to).getPiece();
+        if(dest!=null && dest.getColor()==getColor()){
+            return false;
+        }
+        int dr=Math.abs(to.getRow()-from.getRow());
+        int dc=Math.abs(to.getColumn()-from.getColumn());
+        if(dr==2 && dc==1){
+            return true;
+        }
+        if(dr==1 && dc==2){
+            return true;
+        }
+        return false;
+    }
+    public List<Position> getAvailableMoves(Board board,Position from){
+        List<Position> list=new ArrayList<>();
+        for(int r=0;r<8;r++){
+            for(int c=0;c<8;c++){
+                Position to=new Position(r,c);
+                if(isValidMove(board,from,to)){
+                    list.add(to);
+                }
+            }
+        }
+        return list;
+    }
+}
+
+
